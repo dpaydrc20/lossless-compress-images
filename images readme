@@ -1,30 +1,4 @@
 
-
-**`README.md`**
-
-```markdown
-# Image Compressor
-
-This repository contains a Python script for compressing images to a specified file size.
-
-## Requirements
-
-- Python 3.x
-- Pillow
-
-## Installation
-
-1. Clone this repository:
-    ```sh
-    git clone https://github.com/yourusername/image-compressor.git
-    cd image-compressor
-    ```
-
-2. Install the required packages:
-    ```sh
-    pip install -r requirements.txt
-    ```
-
 ## Usage
 
 To compress an image to a specified size, run the `compress_image.py` script:
