@@ -1,37 +1,4 @@
 
-### Step-by-Step Guide
-
-#### 1. Create a New Repository on GitHub
-
-1. Go to [GitHub](https://github.com) and log in to your account.
-2. Click on the "+" icon in the top right corner and select "New repository".
-3. Name your repository (e.g., `image-compressor`).
-4. Optionally, add a description.
-5. Choose the repository's visibility (public or private).
-6. Click "Create repository".
-
-#### 2. Clone the Repository to Your Local Machine
-
-Open your terminal (or Git Bash on Windows) and clone the repository using the command:
-
-```sh
-git clone https://github.com/yourusername/image-compressor.git
-cd image-compressor
-```
-
-Replace `yourusername` with your GitHub username.
-
-#### 3. Create the Required Files
-
-Navigate to the repository directory and create the following files:
-
-- `README.md`
-- `requirements.txt`
-- `compress_image.py`
-
-You can use a text editor or an IDE to create these files. 
-
-#### 4. Add Content to the Files
 
 **`README.md`**
 
