@@ -1,0 +1,66 @@
+Creating a script that compresses audio files without significantly lowering the quality of sound involves using audio compression techniques. We can use the `pydub` library to handle audio processing and `ffmpeg` for encoding. Here is a Python script that compresses audio files while maintaining their quality as much as possible:
+
+1. Install necessary libraries:
+   ```sh
+   pip install pydub
+   ```
+
+2. Ensure `ffmpeg` is installed on your system. You can download it from [here](https://ffmpeg.org/download.html) and follow the installation instructions for your operating system.
+
+3. Use the following script:
+
+```python
+from pydub import AudioSegment
+import os
+import argparse
+
+# Function to compress audio file
+def compress_audio(input_file, output_file):
+    # Load audio file
+    audio = AudioSegment.from_file(input_file)
+    
+    # Compress audio without significantly reducing quality
+    # Export as MP3 with variable bitrate (VBR) quality of 5 (on a scale from 0 to 9)
+    audio.export(output_file, format="mp3", bitrate="192k")
+
+# Function to find and compress all audio files in a directory
+def compress_directory(input_dir, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+    for root, _, files in os.walk(input_dir):
+        for file in files:
+            input_file = os.path.join(root, file)
+            output_file = os.path.join(output_dir, os.path.splitext(file)[0] + ".mp3")
+            compress_audio(input_file, output_file)
+            print(f"Compressed {input_file} to {output_file}")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Compress audio files without significantly reducing quality.")
+    parser.add_argument("input", type=str, help="Input file or directory")
+    parser.add_argument("output", type=str, help="Output file or directory")
+
+    args = parser.parse_args()
+
+    if os.path.isdir(args.input):
+        compress_directory(args.input, args.output)
+    else:
+        compress_audio(args.input, args.output)
+```
+
+### Explanation:
+1. **Library Installation**: Ensure `pydub` is installed, and `ffmpeg` is available on your system.
+2. **Function to Compress Audio**: The `compress_audio` function loads an audio file, compresses it using a VBR MP3 format with a bitrate of 192 kbps, which maintains a good balance between file size and audio quality.
+3. **Directory Compression**: The `compress_directory` function recursively compresses all audio files in the input directory and saves them to the output directory.
+4. **Command-Line Interface**: The script accepts input and output paths as arguments. It checks if the input is a directory or a file and processes accordingly.
+
+### Usage:
+- To compress a single file:
+  ```sh
+  python compress_audio.py input_audio.wav output_audio.mp3
+  ```
+
+- To compress all audio files in a directory:
+  ```sh
+  python compress_audio.py input_directory output_directory
+  ```
+
+This script will compress audio files while attempting to maintain their quality, outputting them in a compressed MP3 format. Adjust the `bitrate` parameter as needed to find the best balance for your specific needs.
